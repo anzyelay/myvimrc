@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/opt/EmbedSky/gcc-linaro-5.3-2016.02-x86_64_arm-linux-gnueabihf/qt5.5/rootfs_imx6q_V3_qt5.5_env/qt5.5_env/mkspecs/devices/linux-imx6-g++'
+let g:netrw_dirhist_2='/home/anzye/Desktop'
+let g:netrw_dirhist_3='/home/anzye'
+let g:netrw_dirhist_4='/home/anzye/ftp'
+let g:netrw_dirhist_5='/home/anzye/Documents/kc_ui/.git'
+let g:netrw_dirhist_6='/home/anzye/Desktop/work/scripts/src'
+let g:netrw_dirhist_7='/home/anzye/.vim/bundle/Vundle.vim'
+let g:netrw_dirhist_8='/home/anzye/Desktop/work/quagga-1.2.4/ripd'

@@ -1,0 +1,67 @@
+set nocompatible              " required 关闭 vi 兼容模式
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
+" Plugin 'vim-scripts/DfrankUtil'
+" Plugin 'vim-scripts/vimprj'
+" Plugin 'dyng/ctrlsf.vim'
+Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'vim-scripts/DrawIt'
+"Plugin 'derekwyatt/vim-protodef'
+"Plugin 'gcmt/wildfire.vim'
+"Plugin 'sjl/gundo.vim'
+" Plugin 'SirVer/ultisnips'
+" 注释
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'suan/vim-instant-markdown'
+" 输入法中英切换
+Plugin 'lilydjwg/fcitx.vim'
+" 标签导航
+Plugin 'majutsushi/tagbar'
+Plugin 'vim-scripts/ctags.vim'
+" 静态代码分析
+Bundle 'scrooloose/syntastic'
+" 文件搜索
+Bundle 'kien/ctrlp.vim'
+" 目录树导航
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+" 美化状态栏
+"Plugin 'Lokaltog/vim-powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+" 主题风格
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'jnurmine/Zenburn'
+" python自动补全
+Bundle 'davidhalter/jedi-vim'
+Bundle "klen/python-mode"
+"Plugin 'file:///home/anzye/Downloads/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
+" 括号匹配高亮
+Bundle 'kien/rainbow_parentheses.vim'
+" 可视化缩进
+" Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'Yggdroot/indentLine'
+" 自动格式化工具python
+Plugin 'tell-k/vim-autopep8'
+" 自动补全引等
+Plugin 'jiangmiao/auto-pairs'
+" git
+Plugin 'tpope/vim-fugitive'
+" .c .h alter
+Plugin 'a.vim'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+filetype plugin indent on    " required 开启插件
