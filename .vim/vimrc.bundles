@@ -22,7 +22,11 @@ Plugin 'terryma/vim-multiple-cursors'
 " 注释
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'suan/vim-instant-markdown'
+"markdown
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'suan/vim-instant-markdown'
+Plugin 'iamcco/markdown-preview.vim'
 " 输入法中英切换
 Plugin 'lilydjwg/fcitx.vim'
 " 标签导航

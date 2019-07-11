@@ -185,7 +185,20 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 " 选中状态下 Ctrl+c 复制
 vmap <C-c> "+y
 
+"a.vim
 nnoremap <F4> :A<CR>
+
+"cscope 
+nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+
 
 " tagbar标签导航
 nnoremap <F9> :TagbarToggle<CR>
@@ -226,7 +239,55 @@ let g:ycm_min_num_of_chars_for_completion = 3   "开始补全的字符数"
 let g:ycm_python_binary_path = 'python'  "jedi模块所在python解释器路径"
 let g:ycm_seed_identifiers_with_syntax = 1  "开启使用语言的一些关键字查询"
 let g:ycm_autoclose_preview_window_after_completion=1 "补全后自动关闭预览窗口"
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F2> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <F2> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_auto_trigger = 1   "turn on
 let g:ycm_confirm_extra_conf = 0
+
+"自动加载cscope.out
+map <F12> :call LoadCscope()<CR>
+function! LoadCscope()
+    " if (g:iswindows==1)
+        " if (executable("cscope") && has("cscope"))
+            " let UpperPath = findfile("cscope.out", ".;")
+            " if (!empty(UpperPath))
+                " let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)
+                " if (!empty(path))
+                    " let s:CurrentDir = getcwd()
+                    " let direct = strpart(s:CurrentDir, 0, 2)
+                    " let s:FullPath = direct . path
+                    " let s:AFullPath = globpath(s:FullPath, "cscope.out")
+                    " let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath
+                    " execute s:CscopeAddString
+                " endif
+            " endif
+        " endif
+    " else
+       let db = findfile("cscope.out", ".;")
+       if (!empty(db))
+         let path = strpart(db, 0, match(db, "/cscope.out$"))
+         set nocscopeverbose " suppress 'duplicate connection' error
+         exe "cs add " . db . " " . path
+         set cscopeverbose
+       endif
+    " endif
+endfunction
+
+"markdown setting
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 1
+let g:instant_markdown_open_to_the_world = 0
+let g:instant_markdown_allow_unsafe_content = 1
+let g:instant_markdown_allow_external_content = 1
+let g:instant_markdown_mathjax = 1
+" edit binary file
+augroup Binary
+  au!
+  au BufReadPre  *.{bin,ko,exe} let &bin=1
+  au BufReadPost *.{bin,ko,exe} if &bin | %!xxd
+  au BufReadPost *.{bin,ko,exe} set ft=xxd | endif
+  au BufWritePre *.{bin,ko,exe} if &bin | %!xxd -r
+  au BufWritePre *.{bin,ko,exe} endif
+  au BufWritePost *.{bin,ko,exe} if &bin | %!xxd
+  au BufWritePost *.{bin,ko,exe} set nomod | endif
+augroup END
