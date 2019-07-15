@@ -159,7 +159,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <leader>ws <C-w>= 
 nnoremap <leader>wh <C-w>_
-nnoremap <leader>ww <C-w><Bar>
 
 "一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
 nnoremap <leader>1 :set filetype=xhtml<CR>
@@ -194,7 +193,7 @@ nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
 nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ff :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <F2> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
 

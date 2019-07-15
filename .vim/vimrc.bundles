@@ -51,7 +51,8 @@ Plugin 'jnurmine/Zenburn'
 Bundle 'davidhalter/jedi-vim'
 Bundle "klen/python-mode"
 "Plugin 'file:///home/anzye/Downloads/YouCompleteMe'
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " 括号匹配高亮
 Bundle 'kien/rainbow_parentheses.vim'
 " 可视化缩进
