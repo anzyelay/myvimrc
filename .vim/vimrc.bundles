@@ -27,6 +27,7 @@ Plugin 'Lokaltog/vim-easymotion'
 "Plugin 'plasticboy/vim-markdown'
 "Plugin 'suan/vim-instant-markdown'
 Plugin 'iamcco/markdown-preview.vim'
+Plugin 'mzlogin/vim-markdown-toc'
 " 输入法中英切换
 Plugin 'lilydjwg/fcitx.vim'
 " 标签导航
