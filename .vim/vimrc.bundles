@@ -29,7 +29,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'iamcco/markdown-preview.vim'
 Plugin 'mzlogin/vim-markdown-toc'
 " 输入法中英切换
-Plugin 'lilydjwg/fcitx.vim'
+" Plugin 'lilydjwg/fcitx.vim'
 " 标签导航
 Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/ctags.vim'

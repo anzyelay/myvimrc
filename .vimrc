@@ -152,13 +152,21 @@ endif
 
 "窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
 "光标到上方窗口,需要<c-w><c-w>k,非常麻烦,现在重映射为<c-k>,切换的
-"时候会变得非常方便.
+"时候会变得非常方便. :help window
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <leader>ws <C-w>= 
-nnoremap <leader>wh <C-w>_
+nnoremap <leader>_ :vertical res +8<CR>	
+nnoremap <leader>- :vertical res -8<CR>
+"z{nr}<CR>	Set current window height to {nr}.
+"<C-w>= :all have same window size :  
+"<C-w>_ :highest window size   
+"<C-w>| :widest size
+nnoremap <leader>mh <C-w>H
+nnoremap <leader>mj <C-w>J
+nnoremap <leader>mk <C-w>K
+nnoremap <leader>ml <C-w>L
 
 "一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
 nnoremap <leader>1 :set filetype=xhtml<CR>
@@ -186,17 +194,6 @@ vmap <C-c> "+y
 
 "a.vim
 nnoremap <F4> :A<CR>
-
-"cscope 
-nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <F2> :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
-
 
 
 " tagbar标签导航
@@ -238,7 +235,7 @@ let g:ycm_min_num_of_chars_for_completion = 3   "开始补全的字符数"
 let g:ycm_python_binary_path = 'python'  "jedi模块所在python解释器路径"
 let g:ycm_seed_identifiers_with_syntax = 1  "开启使用语言的一些关键字查询"
 let g:ycm_autoclose_preview_window_after_completion=1 "补全后自动关闭预览窗口"
-" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " nnoremap <F2> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_auto_trigger = 1   "turn on
 let g:ycm_confirm_extra_conf = 0
@@ -246,30 +243,23 @@ let g:ycm_confirm_extra_conf = 0
 "自动加载cscope.out
 map <F12> :call LoadCscope()<CR>
 function! LoadCscope()
-    " if (g:iswindows==1)
-        " if (executable("cscope") && has("cscope"))
-            " let UpperPath = findfile("cscope.out", ".;")
-            " if (!empty(UpperPath))
-                " let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)
-                " if (!empty(path))
-                    " let s:CurrentDir = getcwd()
-                    " let direct = strpart(s:CurrentDir, 0, 2)
-                    " let s:FullPath = direct . path
-                    " let s:AFullPath = globpath(s:FullPath, "cscope.out")
-                    " let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath
-                    " execute s:CscopeAddString
-                " endif
-            " endif
-        " endif
-    " else
-       let db = findfile("cscope.out", ".;")
-       if (!empty(db))
-         let path = strpart(db, 0, match(db, "/cscope.out$"))
-         set nocscopeverbose " suppress 'duplicate connection' error
-         exe "cs add " . db . " " . path
-         set cscopeverbose
-       endif
-    " endif
+	let db = findfile("cscope.out", ".;")
+	if (!empty(db))
+		let path = strpart(db, 0, match(db, "/cscope.out$"))
+		set nocscopeverbose " suppress 'duplicate connection' error
+		exe "cs add " . db . " " . path
+		set cscopeverbose
+		"cscope 
+		nmap <leader>fs :cs find s <C-R>=expand("<cword>")<CR><CR>
+		nmap <leader>fg :cs find g <C-R>=expand("<cword>")<CR><CR>
+		nmap <leader>fc :cs find c <C-R>=expand("<cword>")<CR><CR>
+		nmap <leader>ft :cs find t <C-R>=expand("<cword>")<CR><CR>
+		nmap <leader>fe :cs find e <C-R>=expand("<cword>")<CR><CR>
+		nmap <F2>		:cs find f <C-R>=expand("<cfile>")<CR><CR>
+		nmap <leader>fi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+		nmap <leader>fd :cs find d <C-R>=expand("<cword>")<CR><CR>
+	endif
+	" endif
 endfunction
 
 "markdown setting
@@ -281,12 +271,12 @@ let g:instant_markdown_allow_external_content = 1
 let g:instant_markdown_mathjax = 1
 " edit binary file
 augroup Binary
-  au!
-  au BufReadPre  *.{bin,ko,exe} let &bin=1
-  au BufReadPost *.{bin,ko,exe} if &bin | %!xxd
-  au BufReadPost *.{bin,ko,exe} set ft=xxd | endif
-  au BufWritePre *.{bin,ko,exe} if &bin | %!xxd -r
-  au BufWritePre *.{bin,ko,exe} endif
-  au BufWritePost *.{bin,ko,exe} if &bin | %!xxd
-  au BufWritePost *.{bin,ko,exe} set nomod | endif
+	au!
+	au BufReadPre  *.{bin,ko,tar,gz,exe} let &bin=1
+	au BufReadPost *.{bin,ko,tar,gz,exe} if &bin | %!xxd
+	au BufReadPost *.{bin,ko,tar,gz,exe} set ft=xxd | endif
+	au BufWritePre *.{bin,ko,tar,gz,exe} if &bin | %!xxd -r
+	au BufWritePre *.{bin,ko,tar,gz,exe} endif
+	au BufWritePost *.{bin,ko,tar,gz,exe} if &bin | %!xxd
+	au BufWritePost *.{bin,ko,tar,gz,exe} set nomod | endif
 augroup END
